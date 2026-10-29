@@ -57,11 +57,11 @@ body {
   box-shadow: 0 8px 32px rgba(52,40,48,.06);
 }
 
-h1,h2,h3,h4,p,figure {
+h1, h2, h3, h4, p, figure {
   margin: 0;
 }
 
-h1,h2,h3,h4 {
+h1, h2, h3, h4 {
   font-weight: 700;
 }
 
@@ -362,7 +362,7 @@ a:hover {
 
 .profile {
   display: grid;
-  grid-template-columns: 220px minmax(0,1fr);
+  grid-template-columns: 220px minmax(0, 1fr);
   gap: 31px;
   align-items: center;
   border-top: 1px solid var(--line);
@@ -370,7 +370,8 @@ a:hover {
   padding: 28px 0;
 }
 
-/* Teacher: offset border */
+/* Teacher photo: offset border */
+
 .teacher-photo {
   position: relative;
   width: 100%;
@@ -454,7 +455,7 @@ a:hover {
 
 .features {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 29px;
 }
@@ -501,7 +502,7 @@ a:hover {
   line-height: 1.8;
 }
 
-/* ========= DISCUSSION ========= */
+/* ========= COLLABORATION INQUIRY ========= */
 
 .discussion-intro {
   font-size: 16px;
@@ -517,7 +518,7 @@ a:hover {
   display: grid;
   grid-template-columns: 36px 1fr;
   gap: 15px;
-  padding: 23px 0;
+  padding: 25px 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -528,8 +529,8 @@ a:hover {
 }
 
 .discussion-item h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
+  font-size: 19px;
+  margin-bottom: 9px;
 }
 
 .discussion-item p {
@@ -537,42 +538,70 @@ a:hover {
   line-height: 1.85;
 }
 
-.timeline-section {
-  margin-top: 38px;
+.discussion-item p + p {
+  margin-top: 10px;
 }
 
-.timeline-section h3 {
-  font-size: 23px;
-  margin-bottom: 20px;
-}
+/* Inquiry: rate options */
 
-.timeline {
+.inquiry-options {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
 }
 
-.step {
-  border-top: 2px solid var(--line);
-  padding-top: 16px;
+.inquiry-option {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--rose);
+  padding: 16px 18px;
 }
 
-.step .date {
+.inquiry-option:nth-child(2) {
+  border-top-color: var(--warm);
+}
+
+.inquiry-option-label {
+  display: block;
   color: var(--rose);
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 9px;
-}
-
-.step h4 {
-  font-size: 17px;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .1em;
   margin-bottom: 8px;
 }
 
-.step p {
-  font-size: 14px;
-  line-height: 1.85;
+.inquiry-option strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.65;
 }
+
+/* Inquiry: proposed dates */
+
+.inquiry-date {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: var(--soft);
+  border-left: 3px solid var(--rose);
+  padding: 16px 20px;
+  margin: 13px 0 17px;
+}
+
+.inquiry-date span {
+  color: var(--rose-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.inquiry-date strong {
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+/* ========= CONTACT ========= */
 
 .contact {
   margin-top: 39px;
@@ -622,7 +651,7 @@ a:hover {
   transition:
     opacity 760ms ease,
     transform 760ms cubic-bezier(.22,1,.36,1);
-  transition-delay: var(--reveal-delay,0ms);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .motion-ready .scroll-reveal.is-visible {
@@ -632,7 +661,7 @@ a:hover {
 
 /* ========= MOBILE ========= */
 
-@media screen and (max-width:760px) {
+@media screen and (max-width: 760px) {
 
   body {
     background: var(--paper);
@@ -660,7 +689,7 @@ a:hover {
   }
 
   h1 {
-    font-size: clamp(30px,7vw,39px);
+    font-size: clamp(30px, 7vw, 39px);
   }
 
   h2 {
@@ -723,7 +752,7 @@ a:hover {
   }
 
   .teacher-photo {
-    width: min(265px,85%);
+    width: min(265px, 85%);
     margin: 0 auto;
   }
 
@@ -747,14 +776,24 @@ a:hover {
     font-size: 18px;
   }
 
-  .timeline {
-    grid-template-columns: 1fr;
-    gap: 19px;
+  .discussion-item p {
+    font-size: 15px;
   }
 
-  .discussion-item p,
-  .step p {
-    font-size: 15px;
+  .inquiry-options {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiry-option {
+    padding: 17px;
+  }
+
+  .inquiry-date {
+    padding: 15px 17px;
+  }
+
+  .inquiry-date strong {
+    font-size: 17px;
   }
 
   .contact {
@@ -773,7 +812,7 @@ a:hover {
   }
 }
 
-@media (prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
@@ -817,6 +856,7 @@ a:hover {
     </p>
   </div>
 
+  <!-- 封面圖片：維持原樣 -->
   <figure class="hero">
     <img
       src="https://raw.githubusercontent.com/eritung/sat_goldfishbrain_vlog/main/%E9%87%91%E9%AD%9A%E8%85%A6%E5%95%8F%E5%8D%B7%E5%9C%96_%E5%95%8F%E5%8D%B7%E5%9C%96800x400.jpg"
@@ -846,7 +886,6 @@ a:hover {
     </div>
   </div>
 
-  <!-- 阿滴專屬合作方向 -->
   <div class="proposal-intro">
 
     <div class="eyebrow">
@@ -898,7 +937,10 @@ a:hover {
   </header>
 
   <div class="page-heading">
-    <div class="eyebrow">PROPOSED CONTENT DIRECTIONS</div>
+    <div class="eyebrow">
+      PROPOSED CONTENT DIRECTIONS
+    </div>
+
     <h2>
       從不同的生活關係出發，<br>
       <span class="rose">分享影像紀錄的意義。</span>
@@ -1064,7 +1106,7 @@ a:hover {
 
   </div>
 
-  <!-- 合併的合作形式 -->
+  <!-- 初步合作形式 -->
   <div class="formats-section">
 
     <div class="eyebrow">PROPOSED FORMATS</div>
@@ -1109,7 +1151,7 @@ a:hover {
 
 
 <!-- ================================
-03｜課程與講師介紹
+03｜講師與課程介紹
 ================================ -->
 
 <section class="page">
@@ -1121,7 +1163,9 @@ a:hover {
 
   <div class="page-heading">
 
-    <div class="eyebrow">THE CREATOR & THE COURSE</div>
+    <div class="eyebrow">
+      THE CREATOR & THE COURSE
+    </div>
 
     <h2>
       不只是學會拍攝，<br>
@@ -1216,6 +1260,7 @@ a:hover {
   <div class="features">
 
     <div class="feature">
+
       <div class="feature-num">01</div>
 
       <h3>
@@ -1229,9 +1274,11 @@ a:hover {
         讓零碎片段不再只是流水帳，
         而是具有情感與記憶點的 Vlog。
       </p>
+
     </div>
 
     <div class="feature">
+
       <div class="feature-num">02</div>
 
       <h3>
@@ -1245,9 +1292,11 @@ a:hover {
         獨旅自拍等不同情境，
         都有具體可應用的拍攝方法。
       </p>
+
     </div>
 
     <div class="feature">
+
       <div class="feature-num">03</div>
 
       <h3>
@@ -1261,6 +1310,7 @@ a:hover {
         90 秒短片實作與 7 天訓練營，
         逐步完成自己的 Vlog。
       </p>
+
     </div>
 
   </div>
@@ -1279,14 +1329,14 @@ a:hover {
 
 
 <!-- ================================
-04｜合作洽談與聯絡
+04｜合作意願與報價洽詢
 ================================ -->
 
 <section class="page">
 
   <header class="topline">
     <span class="brand">SAT. KNOWLEDGE</span>
-    <span class="topline-right">COLLABORATION DETAILS</span>
+    <span class="topline-right">COLLABORATION INQUIRY</span>
   </header>
 
   <div class="page-heading">
@@ -1301,123 +1351,137 @@ a:hover {
   </div>
 
   <p class="discussion-intro">
-    我們希望這次合作不只是單純的課程曝光，
-    更能結合阿滴的生活經驗與創作風格，
-    透過自然、有共鳴的內容，
+    這次希望能邀請阿滴一起推廣金魚腦 Vlog 線上課程，
+    透過具有個人風格與情感共鳴的內容，
     讓更多人重新看見影像紀錄的價值。
-    期待有機會進一步交流合作的可能性！
+    也期待有機會與阿滴團隊進一步交流合作的可能性！
   </p>
 
   <div class="eyebrow">
-    COLLABORATION DISCUSSION
+    COLLABORATION INQUIRY
   </div>
 
   <div class="discussion">
 
+    <!-- 01｜先確認合作意願 -->
     <div class="discussion-item">
 
       <span class="num">01</span>
 
       <div>
-        <h3>合作內容與呈現方式</h3>
+
+        <h3>合作意願與內容方向</h3>
+
         <p>
-          期待了解阿滴團隊對上述主題的想法，
-          以及適合的合作內容、
-          平台與曝光形式。
+          想先詢問阿滴團隊是否有意願參與本次課程推廣合作！
         </p>
+
+        <p>
+          若有合作意願，也想進一步了解團隊對上述提案主題的想法；
+          若有其他更符合阿滴風格的內容切角，
+          也非常歡迎一起討論！
+        </p>
+
       </div>
 
     </div>
 
+    <!-- 02｜詢問報價 -->
     <div class="discussion-item">
 
       <span class="num">02</span>
 
       <div>
-        <h3>合作報價與相關條件</h3>
+
+        <h3>合作形式與報價</h3>
+
         <p>
-          希望了解 YouTube 長影片置入，
-          或 Instagram Reels 搭配限時動態
-          等合作形式的報價，
-          以及相關執行條件。
+          希望能了解以下兩種合作形式的報價，
+          以及相關合作條件，供我們評估與規劃。
         </p>
+
+        <div class="inquiry-options">
+
+          <div class="inquiry-option">
+            <span class="inquiry-option-label">
+              OPTION A
+            </span>
+
+            <strong>
+              YouTube 長影片置入
+            </strong>
+          </div>
+
+          <div class="inquiry-option">
+            <span class="inquiry-option-label">
+              OPTION B
+            </span>
+
+            <strong>
+              Instagram Reels＋限時動態宣傳
+            </strong>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
 
+    <!-- 03｜確認可配合檔期 -->
     <div class="discussion-item">
 
       <span class="num">03</span>
 
       <div>
-        <h3>合作檔期與執行安排</h3>
+
+        <h3>預計合作檔期</h3>
+
+        <div class="inquiry-date">
+
+          <span>預計合作曝光期間</span>
+
+          <strong>
+            2026 年 12 月中旬－2027 年 1 月下旬
+          </strong>
+
+        </div>
+
         <p>
-          配合課程募資推廣時程，
-          期待進一步討論可合作的檔期，
-          並依雙方需求安排後續作業。
+          本次預計配合課程預熱及募資推廣，
+          於上述期間安排合作內容上線。
+          也想同步了解阿滴團隊在此期間
+          是否有可配合的檔期，
+          實際發布時間皆可再共同協調！
         </p>
+
       </div>
 
     </div>
 
   </div>
 
-  <div class="timeline-section">
-
-    <div class="eyebrow">PROPOSED TIMELINE</div>
-
-    <h3>預計合作時程</h3>
-
-    <div class="timeline">
-
-      <div class="step">
-        <div class="date">合作確認階段</div>
-        <h4>對齊方向與條件</h4>
-        <p>
-          討論合作主題、
-          內容形式、報價與檔期，
-          確認雙方合作共識。
-        </p>
-      </div>
-
-      <div class="step">
-        <div class="date">內容準備階段</div>
-        <h4>課程體驗與製作</h4>
-        <p>
-          協調課程體驗與資訊提供，
-          安排內容溝通及製作。
-        </p>
-      </div>
-
-      <div class="step">
-        <div class="date">2026 年 12 月底起</div>
-        <h4>配合募資開賣</h4>
-        <p>
-          預計於 12 月底啟動募資，
-          實際曝光時間可再協調。
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-
+  <!-- 聯絡資訊 -->
   <div class="contact">
 
     <div>
+
       <div class="eyebrow">CONTACT US</div>
 
       <h3>期待有機會一起合作！</h3>
 
       <p>SAT. Knowledge 知識衛星</p>
+
     </div>
 
     <div class="contact-detail">
+
       <p>專案聯絡窗口｜Eri</p>
 
       <a href="mailto:eritung@sat.cool">
         eritung@sat.cool
       </a>
+
     </div>
 
   </div>
@@ -1463,7 +1527,6 @@ SCROLL REVEAL ANIMATION
     ".statement",
     ".discussion-intro",
     ".discussion-item",
-    ".timeline-section",
     ".contact"
   ];
 
@@ -1503,6 +1566,7 @@ SCROLL REVEAL ANIMATION
 
   targets.forEach(element => observer.observe(element));
 
+  // 首屏區塊立即顯示
   targets.forEach(element => {
     const rect = element.getBoundingClientRect();
 
