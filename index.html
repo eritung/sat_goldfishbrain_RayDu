@@ -1,0 +1,999 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金魚腦 Vlog｜創作者合作邀請</title>
+<style>
+  :root {
+    --paper: #faf8f4;
+    --white: #ffffff;
+    --ink: #292b28;
+    --muted: #74756f;
+    --accent: #a77b55;
+    --soft: #ede6dc;
+    --line: #ded9d1;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: #e8e6e1;
+    color: var(--ink);
+    font-family:
+      "Noto Sans TC",
+      "PingFang TC",
+      "Microsoft JhengHei",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 24px;
+    background: rgba(255,255,255,.96);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .toolbar-title {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .print-button {
+    border: 0;
+    background: var(--ink);
+    color: white;
+    padding: 11px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .document {
+    max-width: 860px;
+    margin: 30px auto 60px;
+  }
+
+  .page {
+    position: relative;
+    background: var(--paper);
+    width: 100%;
+    min-height: 1120px;
+    padding: 62px 68px 76px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(30,30,30,.07);
+  }
+
+  .topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+    gap: 20px;
+  }
+
+  .brand {
+    letter-spacing: .15em;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: .17em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  h1, h2, h3, p {
+    margin-top: 0;
+  }
+
+  h1 {
+    font-size: 43px;
+    line-height: 1.45;
+    letter-spacing: -.035em;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 29px;
+    line-height: 1.45;
+    letter-spacing: -.025em;
+  }
+
+  h3 {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  p {
+    font-size: 13.5px;
+    line-height: 2;
+    color: #555750;
+  }
+
+  .lead {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  .accent {
+    color: var(--accent);
+  }
+
+  .page-heading {
+    margin-top: 48px;
+    margin-bottom: 28px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .12em;
+    margin-bottom: 16px;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--line);
+    margin: 28px 0;
+  }
+
+  .highlight {
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 20px;
+    margin: 25px 0;
+  }
+
+  .highlight p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+
+  .image-placeholder {
+    position: relative;
+    background:
+      linear-gradient(140deg, #dad3c7, #eee7dc 56%, #c6b9a7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #817569;
+    overflow: hidden;
+  }
+
+  .image-placeholder::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255,255,255,.55);
+    pointer-events: none;
+  }
+
+  .image-placeholder span {
+    font-size: 12px;
+    letter-spacing: .08em;
+    font-weight: 600;
+  }
+
+  .image-placeholder small {
+    font-size: 10px;
+    margin-top: 8px;
+  }
+
+  /* 可替換成圖片網址 */
+  .hero-image {
+    height: 315px;
+    margin-top: 32px;
+  }
+
+  .creator-image {
+    height: 260px;
+  }
+
+  .page-footer {
+    margin-top: auto;
+    padding-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 10px;
+    letter-spacing: .06em;
+    color: var(--muted);
+  }
+
+  /* PAGE 1 */
+
+  .cover-title {
+    margin-top: 65px;
+  }
+
+  .cover-title h1 {
+    margin-bottom: 15px;
+  }
+
+  .cover-subtitle {
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: .04em;
+    font-weight: 600;
+  }
+
+  .cover-copy {
+    margin-top: 37px;
+    max-width: 650px;
+  }
+
+  .cover-copy p {
+    margin-bottom: 14px;
+  }
+
+  .cover-invitation {
+    font-size: 15px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.9;
+    margin-top: 15px;
+  }
+
+  .date-tag {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    font-size: 11px;
+    letter-spacing: .04em;
+    margin-top: 15px;
+  }
+
+  /* PAGE 2 */
+
+  .creator-layout {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 28px;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+
+  .creator-layout h3 {
+    margin-bottom: 12px;
+  }
+
+  .creator-layout p {
+    margin-bottom: 10px;
+  }
+
+  .creator-links {
+    font-size: 12px;
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .course-intro {
+    margin: 22px 0;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .feature {
+    border-top: 2px solid var(--accent);
+    padding-top: 18px;
+  }
+
+  .feature-number {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 15px;
+  }
+
+  .feature h3 {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+
+  .feature p {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+
+  .bottom-statement {
+    margin-top: 35px;
+    padding: 24px;
+    background: var(--soft);
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.7;
+  }
+
+  /* PAGE 3 */
+
+  .collab-intro {
+    margin: 25px 0 25px;
+  }
+
+  .collab-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .collab-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 10px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .collab-item .number {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    color: var(--accent);
+  }
+
+  .collab-item h3 {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  .collab-item p {
+    margin: 0;
+    font-size: 12.5px;
+  }
+
+  .collab-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .info-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 28px;
+  }
+
+  .info-box {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+
+  .info-box h3 {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .info-box p {
+    font-size: 12px;
+    line-height: 1.85;
+    margin-bottom: 8px;
+  }
+
+  .contact {
+    background: var(--ink);
+    color: white;
+    padding: 25px 28px;
+    margin-top: 32px;
+  }
+
+  .contact .section-label {
+    color: #d9b695;
+  }
+
+  .contact h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .contact p {
+    color: #e2e0db;
+    margin-bottom: 0;
+    font-size: 12px;
+  }
+
+  .contact a {
+    color: #e8c4a5;
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 720px) {
+    .toolbar {
+      padding: 12px 16px;
+    }
+
+    .document {
+      margin: 12px auto;
+    }
+
+    .page {
+      min-height: auto;
+      padding: 30px 23px 35px;
+      margin-bottom: 12px;
+      box-shadow: none;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    .cover-title {
+      margin-top: 45px;
+    }
+
+    .cover-copy {
+      margin-top: 26px;
+    }
+
+    .hero-image {
+      height: 220px;
+    }
+
+    .creator-layout,
+    .info-area {
+      grid-template-columns: 1fr;
+    }
+
+    .creator-image {
+      height: 220px;
+    }
+
+    .features {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .feature {
+      padding-top: 12px;
+    }
+
+    .feature-number {
+      margin-bottom: 6px;
+    }
+
+    .feature p {
+      font-size: 13px;
+    }
+
+    .page-heading {
+      margin-top: 35px;
+    }
+
+    .page-footer {
+      margin-top: 30px;
+    }
+  }
+
+  /* PDF Print */
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  @media print {
+    html, body {
+      background: white;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .toolbar {
+      display: none !important;
+    }
+
+    .document {
+      margin: 0;
+      max-width: none;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      min-height: 0;
+      max-height: 297mm;
+      margin: 0;
+      padding: 15mm 17mm 17mm;
+      box-shadow: none;
+      break-after: page;
+      page-break-after: always;
+      overflow: hidden;
+    }
+
+    .page:last-child {
+      break-after: auto;
+      page-break-after: auto;
+    }
+
+    .hero-image {
+      height: 78mm;
+    }
+
+    .creator-image {
+      height: 62mm;
+    }
+
+    h1 {
+      font-size: 34px;
+    }
+
+    h2 {
+      font-size: 25px;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .page-heading {
+      margin-top: 35px;
+      margin-bottom: 22px;
+    }
+
+    .cover-title {
+      margin-top: 48px;
+    }
+
+    .cover-copy {
+      margin-top: 27px;
+    }
+
+    .cover-copy p {
+      margin-bottom: 10px;
+    }
+
+    .creator-layout {
+      margin-bottom: 18px;
+    }
+
+    .divider {
+      margin: 18px 0;
+    }
+
+    .course-intro {
+      margin: 14px 0;
+    }
+
+    .features {
+      margin-top: 10px;
+    }
+
+    .feature-number {
+      margin-bottom: 8px;
+    }
+
+    .feature p,
+    .collab-item p {
+      font-size: 11px;
+    }
+
+    .feature h3 {
+      font-size: 12px;
+    }
+
+    .bottom-statement {
+      margin-top: 20px;
+      padding: 18px;
+      font-size: 15px;
+    }
+
+    .collab-item {
+      padding: 16px 0;
+    }
+
+    .collab-intro {
+      margin: 18px 0;
+    }
+
+    .info-area {
+      margin-top: 20px;
+    }
+
+    .contact {
+      margin-top: 22px;
+      padding: 20px 24px;
+    }
+
+    .page-footer {
+      margin-top: auto;
+      padding-top: 15px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-title">
+    金魚腦 Vlog｜創作者合作邀請
+  </div>
+  <button class="print-button" onclick="window.print()">
+    列印／儲存 PDF
+  </button>
+</div>
+
+<main class="document">
+
+<!-- ==================== PAGE 1 ==================== -->
+
+<section class="page">
+
+  <div class="topline">
+    <div class="brand">SAT. KNOWLEDGE</div>
+    <div class="eyebrow">COLLABORATION PROPOSAL</div>
+  </div>
+
+  <div class="cover-title">
+    <div class="section-label">
+      GOLDFISHBRAIN × SAT. KNOWLEDGE
+    </div>
+
+    <h1>
+      把值得記得的生活，<br>
+      拍成故事。
+    </h1>
+
+    <div class="cover-subtitle">
+      金魚腦 Vlog 線上課程｜創作者合作邀請
+    </div>
+  </div>
+
+  <div class="hero-image image-placeholder">
+    <span>金魚腦形象照／旅行 Vlog 代表畫面</span>
+    <small>建議使用橫式生活影像或旅行畫面</small>
+  </div>
+
+  <div class="cover-copy">
+
+    <p class="lead">
+      每一段值得珍藏的回憶，<br>
+      都值得被好好記錄。
+    </p>
+
+    <p>
+      我們總是習慣用手機記錄旅行與日常，
+      卻常常在回頭整理時才發現，
+      那些珍貴的片段，始終停留在相簿裡。
+    </p>
+
+    <p>
+      但其實，好的 Vlog 不需要昂貴的器材，
+      也不一定需要多麼精彩的生活。
+      只要學會觀察、拍攝與說故事，
+      就能將平凡日常轉化成值得反覆回味的影像。
+    </p>
+
+    <p>
+      這次，SAT. Knowledge 攜手 YouTuber
+      <strong>金魚腦</strong>，
+      將近十年的影像創作經驗整理成線上課程，
+      希望讓更多人學會用自己的視角，
+      記錄生活中的美好。
+    </p>
+
+    <div class="highlight">
+      <p>
+        誠摯邀請您一起參與這次課程推廣，
+        讓更多人發現影像紀錄的樂趣，
+        並找到屬於自己的創作方式。
+      </p>
+    </div>
+
+    <div class="date-tag">
+      預計課程募資開賣｜2026 年 12 月底
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>SAT. KNOWLEDGE × GOLDFISHBRAIN</span>
+    <span>01 / 03</span>
+  </div>
+
+</section>
+
+<!-- ==================== PAGE 2 ==================== -->
+
+<section class="page">
+
+  <div class="topline">
+    <div class="brand">SAT. KNOWLEDGE</div>
+    <div class="eyebrow">ABOUT THE COURSE</div>
+  </div>
+
+  <div class="page-heading">
+    <div class="section-label">ABOUT GOLDFISHBRAIN</div>
+    <h2>
+      不只是學會拍攝，<br>
+      更是學會用影像說故事。
+    </h2>
+  </div>
+
+  <div class="creator-layout">
+    <div>
+      <h3>金魚腦｜生活影像創作者・YouTuber</h3>
+
+      <p>
+        擁有近十年的 YouTube 創作經驗，
+        頻道訂閱數接近百萬，
+        累積超過 300 支影片，
+        總觀看次數突破一億。
+      </p>
+
+      <p>
+        擅長以自然真實的敘事風格，
+        將旅行、生活與文化體驗
+        轉化成充滿故事感的 Vlog，
+        捕捉生活中容易被忽略的美好細節。
+      </p>
+
+      <div class="creator-links">
+        <a href="https://www.youtube.com/@goldfishbrain"
+           target="_blank" rel="noopener noreferrer">
+          YouTube 頻道 ↗
+        </a>
+        <a href="https://www.instagram.com/goldfishbrain17/"
+           target="_blank" rel="noopener noreferrer">
+          Instagram ↗
+        </a>
+      </div>
+    </div>
+
+    <div class="creator-image image-placeholder">
+      <span>金魚腦講師形象照</span>
+      <small>建議使用官方人物照片</small>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">ABOUT THE COURSE</div>
+
+  <h3>
+    《金魚腦｜把旅行與日常拍成故事》<br>
+    Vlog 線上課程
+  </h3>
+
+  <p class="course-intro">
+    這堂課不只是教大家「怎麼拍」，
+    更希望讓學員理解<strong>「為什麼這樣拍」</strong>。
+    從手機拍攝、構圖運鏡，到素材蒐集、
+    故事敘事與剪輯節奏，
+    系統化拆解好看 Vlog 背後的創作邏輯。
+  </p>
+
+  <div class="section-label">COURSE HIGHLIGHTS</div>
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="feature-number">01</div>
+      <h3>從生活觀察<br>到故事敘事</h3>
+      <p>
+        學習捕捉生活細節，
+        運用敘事公式與故事心法，
+        讓影片不再只是流水帳，
+        而是有情感、有記憶點的作品。
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-number">02</div>
+      <h3>一支手機<br>就能開始創作</h3>
+      <p>
+        不需要專業器材，
+        從鏡位、構圖、運鏡，
+        到旅行、探店、住宿開箱，
+        都有具體可應用的拍攝方法。
+      </p>
+    </div>
+
+    <div class="feature">
+      <div class="feature-number">03</div>
+      <h3>從理解方法<br>到實際完成作品</h3>
+      <p>
+        透過單元練習、
+        實戰拍攝與 7 天 Vlog 創作訓練營，
+        帶領學員逐步完成
+        屬於自己的影像故事。
+      </p>
+    </div>
+
+  </div>
+
+  <div class="bottom-statement">
+    希望讓每個人，<br>
+    都能用自己的方式留下生活中的美好。
+  </div>
+
+  <div class="page-footer">
+    <span>SAT. KNOWLEDGE × GOLDFISHBRAIN</span>
+    <span>02 / 03</span>
+  </div>
+
+</section>
+
+<!-- ==================== PAGE 3 ==================== -->
+
+<section class="page">
+
+  <div class="topline">
+    <div class="brand">SAT. KNOWLEDGE</div>
+    <div class="eyebrow">LET'S COLLABORATE</div>
+  </div>
+
+  <div class="page-heading">
+    <div class="section-label">COLLABORATION OPPORTUNITIES</div>
+
+    <h2>
+      期待與您一起，<br>
+      讓更多美好被看見。
+    </h2>
+  </div>
+
+  <p class="collab-intro">
+    我們相信，每位創作者都有獨特的生活視角與內容風格。
+    因此，這次希望以
+    <strong>符合創作者個人特色、能與粉絲自然產生共鳴</strong>
+    的方式進行合作，
+    而非限制於單一的業配形式。
+  </p>
+
+  <div class="section-label">POSSIBLE COLLABORATIONS</div>
+
+  <div class="collab-list">
+
+    <div class="collab-item">
+      <div class="number">01</div>
+      <div>
+        <h3>創作經驗與生活故事分享</h3>
+        <p>
+          從旅行回憶、日常紀錄或個人創作經驗切入，
+          分享影像紀錄帶來的意義，
+          並自然延伸至課程理念。
+        </p>
+      </div>
+    </div>
+
+    <div class="collab-item">
+      <div class="number">02</div>
+      <div>
+        <h3>課程體驗與內容推薦</h3>
+        <p>
+          邀請創作者了解或體驗課程內容，
+          結合個人觀點與實際應用情境，
+          向粉絲分享課程特色與真實體驗。
+        </p>
+      </div>
+    </div>
+
+    <div class="collab-item">
+      <div class="number">03</div>
+      <div>
+        <h3>多元社群內容合作</h3>
+        <p>
+          依據創作者的內容風格與受眾特性，
+          共同討論 YouTube、Instagram Reels、
+          社群貼文或限時動態等適合的合作方式。
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="collab-note">
+    以上僅為初步構想，實際內容形式、
+    曝光安排與合作條件皆可彈性討論，
+    期待找到最適合雙方的合作模式。
+  </p>
+
+  <div class="info-area">
+
+    <div class="info-box">
+      <div class="section-label">TIMELINE</div>
+      <h3>預計合作時程</h3>
+      <p>
+        <strong>2026 年 12 月底起</strong>
+      </p>
+      <p>
+        課程預計於 12 月底啟動募資開賣，
+        實際合作發布時間可依雙方規劃協調。
+      </p>
+    </div>
+
+    <div class="info-box">
+      <div class="section-label">NEXT STEPS</div>
+      <h3>期待進一步交流</h3>
+      <p>
+        若您對本次合作有興趣，
+        期待有機會了解適合的合作形式、
+        相關報價與檔期安排，
+        以利後續討論。
+      </p>
+    </div>
+
+  </div>
+
+  <div class="contact">
+    <div class="section-label">CONTACT US</div>
+
+    <h3>期待有機會一起合作！</h3>
+
+    <p>
+      SAT. Knowledge 知識衛星<br>
+      專案聯絡窗口：Eri<br>
+      Email：
+      <a href="mailto:eritung@sat.cool">
+        eritung@sat.cool
+      </a>
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>SAT. KNOWLEDGE × GOLDFISHBRAIN</span>
+    <span>03 / 03</span>
+  </div>
+
+</section>
+
+</main>
+
+</body>
+</html>
