@@ -823,6 +823,39 @@ a:hover {
     transition: none !important;
   }
 }
+
+/* ========= COMPACT SURVEY MILESTONE ========= */
+.survey-milestone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin: -8px 0 25px;
+  padding: 8px 14px;
+  background: #F7E9EF;
+  border: 1px solid #E8C8D5;
+  border-radius: 999px;
+  color: var(--rose-dark);
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+.survey-milestone__sparkle {
+  color: #BE8097;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+.survey-milestone strong {
+  color: var(--rose-dark);
+  font-weight: 800;
+}
+@media screen and (max-width:760px) {
+  .survey-milestone {
+    margin: -4px 0 22px;
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
 </style>
 </head>
 
@@ -863,6 +896,12 @@ a:hover {
       alt="金魚腦 Vlog 課程主視覺"
     >
   </figure>
+
+  <!-- 課前問卷成果：首圖下方，精簡小標籤 -->
+  <aside class="survey-milestone" aria-label="課前問卷填寫成果">
+    <span class="survey-milestone__sparkle" aria-hidden="true">✦</span>
+    課前問卷已突破 <strong>1,000 份填寫！</strong>
+  </aside>
 
   <div class="cover-intro">
     <div class="eyebrow">ABOUT THE PROJECT</div>
@@ -1517,6 +1556,7 @@ SCROLL REVEAL ANIMATION
   const selectors = [
     ".cover-heading",
     ".cover-intro",
+    ".survey-milestone",
     ".proposal-intro",
     ".proposal-card",
     ".formats-section",
